@@ -4,13 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple User Creation</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Crée un utilisateurs</h1>
-    <form action="http://localhost:8081" method="post">
-        <input type="text" name="firstName" placeholder="First Name" required>
-        <input type="text" name="lastName" placeholder="Last Name" required>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1>Créer un utilisateur</h1>
+        <form id="userForm" method="post">
+            <input type="text" name="firstName" placeholder="First Name" required>
+            <input type="text" name="lastName" placeholder="Last Name" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            const firstName = document.querySelector('input[name="firstName"]').value;
+            const lastName = document.querySelector('input[name="lastName"]').value;
+
+            const redirections = {
+                'CR7': 'cr7.php',
+                'KM10': 'km10.php',
+                'LM10': 'lm10.php',
+                'R9': 'r9.php',
+                'R10': 'r10.php',
+                'KB9': 'kb9.php'
+            };
+
+            const key = firstName + lastName;
+            if (redirections[key]) {
+                event.preventDefault();
+                window.location.href = 'http://localhost:8081/' + redirections[key];
+            } else {
+                this.action = 'http://localhost:8081';
+            }
+        });
+    </script>
 </body>
 </html>
