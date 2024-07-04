@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    image: amneziik/frontend:latest  
+    ports:
+      - "8080:80"
+    networks:
+      - app-network
+
+  backend:
+    build: ./backend
+    image: amneziik/backend:latest  
+    ports:
+      - "8081:80"
+    networks:
+      - app-network
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: exampledb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8082:80"
+    depends_on:
+      - db
+    networks:
+      - app-network
+    volumes:
+      - phpmyadmin_sessions:/sessions
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  phpmyadmin_sessions:
