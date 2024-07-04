@@ -20,7 +20,7 @@ services:
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: azerty
       MYSQL_DATABASE: partieldocker
     ports:
       - "3307:3306"
