@@ -3,8 +3,8 @@ session_start();
 
 $servername = "db";
 $username = "root";
-$password = "rootpassword";
-$database = "exampledb";
+$password = "azerty";
+$database = "partieldocker";
 
 // Créer une connexion
 $conn = new mysqli($servername, $username, $password, $database);
