@@ -3,7 +3,7 @@ session_start();
 
 $servername = "db";
 $username = "root";
-$password = "azerty";
+$password = "rootpassword";
 $database = "partieldocker";
 
 // Créer une connexion
